@@ -1,0 +1,15 @@
+.form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}
+
+.button {
+  margin: 10px 0 30px;
+}

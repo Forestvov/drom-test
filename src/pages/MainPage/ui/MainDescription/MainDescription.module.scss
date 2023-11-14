@@ -1,0 +1,14 @@
+.text {
+  font-size: 14px;
+  line-height: 20px;
+  color: #b4b2b2;
+
+  a {
+    color: var(--color-link);
+    transition: 400ms;
+
+    &:hover {
+      color: var(--color-accent);
+    }
+  }
+}
