@@ -29,8 +29,10 @@ export const MainSuccess = () => {
         }
 
         return () => {
-            timer = null;
-            dispatch(setStatus({ status: 'default' }));
+            if (status === 'success') {
+                timer = null;
+                dispatch(setStatus({ status: 'default' }));
+            }
         };
     }, [status]);
 

@@ -16,6 +16,7 @@ import { MainAddress } from '../MainAddress/MainAddress';
 import { schema } from './MainForm.schema';
 
 import s from './MainForm.module.scss';
+import { cn } from 'shared/lib/cn/cn';
 
 const { selectCity, selectDate, clearSelects, setStatus } = bookingActions;
 
@@ -28,7 +29,7 @@ interface IFields {
 }
 
 export const MainForm = () => {
-    const { citiesOptions, selectedCity, times, datesOptions } =
+    const { citiesOptions, selectedCity, times, datesOptions, status } =
         useStateSelector((state) => state.bookingReducer);
 
     const dispatch = useAppDispatch();
@@ -65,11 +66,11 @@ export const MainForm = () => {
     }, [selectedCity]);
 
     useEffect(() => {
-        if (methods.formState.isSubmitSuccessful) {
+        if (status === 'success') {
             reset();
             setValue('phone', '');
         }
-    }, [methods.formState, reset]);
+    }, [status]);
 
     const onSubmit = (data: IFields) => {
         const formData = {
@@ -98,7 +99,7 @@ export const MainForm = () => {
                 );
 
                 resolve('success');
-            }, 1000);
+            }, 3000);
         }).then(() => {
             dispatch(setStatus({ status: 'success' }));
             dispatch(clearSelects());
@@ -107,7 +108,10 @@ export const MainForm = () => {
 
     return (
         <FormProvider {...methods}>
-            <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
+            <form
+                className={cn(s.form, { [s.disable]: status === 'pending' })}
+                onSubmit={handleSubmit(onSubmit)}
+            >
                 <Controller
                     render={({
                         field: { onChange, value, onBlur },

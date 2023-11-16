@@ -1,37 +1,37 @@
 .order {
-  border: 1px solid var(--color-bg-input);
-  border-radius: 10px;
-  padding: 20px;
-  position: relative;
+    border: 1px solid var(--color-bg-input);
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
 
-  & + .order {
-    margin-top: 10px;
-  }
+    & + .order {
+        margin-top: 10px;
+    }
 }
 
 .order__row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 
-  & + .order__row {
-    margin-top: 10px;
-  }
+    & + .order__row {
+        margin-top: 10px;
+    }
 }
 
 .order__name {
-  font-weight: 700;
+    font-weight: 700;
 }
 
 .order__clear {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  line-height: 20px;
-  font-size: 20px;
-  background-color: transparent;
-  border: none;
-  color: var(--color-accent);
-  font-weight: 700;
-  transform: rotate(45deg);
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    line-height: 20px;
+    font-size: 20px;
+    background-color: transparent;
+    border: none;
+    color: var(--color-accent);
+    font-weight: 700;
+    transform: rotate(45deg);
 }

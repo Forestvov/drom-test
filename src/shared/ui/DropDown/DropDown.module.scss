@@ -1,144 +1,135 @@
 .inner {
-  position: relative;
-  width: 100%;
-
-  input {
-    position: absolute;
-    display: none;
+    position: relative;
     width: 100%;
-    height: 100px;
-  }
-}
 
-.header {
-  height: 60px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: var(--color-bg-input);
-  border: none;
-  padding: 0 20px;
-  font-size: 16px;
-  border-radius: 6px;
-  transition: 400ms;
-
-  &.open .arrow {
-    transform: rotate(180deg);
-  }
-
-  &.error {
-    background-color: #FAE5E8;
-    color: var(--color-accent);
-    outline-color: #d93145;
-  }
-
-  &.isNotTouched {
-    color: #413f3f;
-    opacity: .75;
-
-    &:focus {
-      opacity: 1;
+    input {
+        position: absolute;
+        display: none;
+        width: 100%;
+        height: 100px;
     }
-  }
-
-  &.isNotTouched {
-    color: #413f3f;
-    opacity: .75;
-
-    &:focus {
-      opacity: 1;
-    }
-  }
-
-  &.isTouched {
-    opacity: 1;
-  }
 }
 
 .arrow {
-  transition: 400ms;
+    transition: 400ms;
     width: 8px;
     height: 6px;
 }
 
+.header {
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--color-bg-input);
+    border: none;
+    padding: 0 20px;
+    font-size: 16px;
+    border-radius: 6px;
+    transition: 400ms;
+
+    &.open .arrow {
+        transform: rotate(180deg);
+    }
+
+    &.error {
+        background-color: #FAE5E8;
+        color: var(--color-accent);
+        outline-color: #d93145;
+    }
+
+    &.isNotTouched {
+        color: #413f3f;
+        opacity: .75;
+
+        &:focus {
+            opacity: 1;
+        }
+    }
+
+    &.isTouched {
+        opacity: 1;
+    }
+}
+
 .body {
-  position: absolute;
-  top: 70px;
-  width: 100%;
-  background-color: #fff;
-  z-index: 1;
-  box-shadow: -2px 4px 9px -4px rgba(34, 60, 80, 0.2);
-  border-radius: 0 0 6px 6px;
-  max-height: 0;
-  transition: 400ms;
-  overflow-y: hidden;
+    position: absolute;
+    top: 70px;
+    width: 100%;
+    background-color: #fff;
+    z-index: 1;
+    box-shadow: -2px 4px 9px -4px rgb(34 60 80 / 20%);
+    border-radius: 0 0 6px 6px;
+    max-height: 0;
+    transition: 400ms;
+    overflow-y: hidden;
 
-  &::-webkit-scrollbar {
-    width: 4px;
-    height: 3px;
-  }
+    &::-webkit-scrollbar {
+        width: 4px;
+        height: 3px;
+    }
 
-  &::-webkit-scrollbar-button {
-    background-color: #46413a;
-    display: none;
-  }
+    &::-webkit-scrollbar-button {
+        background-color: #46413a;
+        display: none;
+    }
 
-  &::-webkit-scrollbar-track {
-    background-color: #d2ccc3;
-  }
+    &::-webkit-scrollbar-track {
+        background-color: #d2ccc3;
+    }
 
-  &::-webkit-scrollbar-track-piece {
-    background-color: #f4f4f4;
-    border-radius: 30px;
-  }
+    &::-webkit-scrollbar-track-piece {
+        background-color: #f4f4f4;
+        border-radius: 30px;
+    }
 
-  &::-webkit-scrollbar-thumb {
-    height: 20px;
-    background-color: #e3e3e3;
-    border-radius: 30px;
-  }
+    &::-webkit-scrollbar-thumb {
+        height: 20px;
+        background-color: #e3e3e3;
+        border-radius: 30px;
+    }
 
-  &::-webkit-scrollbar-corner {
-    background-color: #999;
-  }
+    &::-webkit-scrollbar-corner {
+        background-color: #999;
+    }
 
 
-  &.open {
-    max-height: 300px;
-    overflow-y: auto;
-  }
+    &.open {
+        max-height: 300px;
+        overflow-y: auto;
+    }
 
 }
 
 .list {
-  padding: 5px 20px 5px;
+    padding: 5px 20px;
 
-  li {
-    width: 100%;
-    margin: 15px 0;
-  }
-
-  button {
-    width: 100%;
-    text-align: left;
-    line-height: 20px;
-    background-color: transparent;
-    border: none;
-    transition: 400ms;
-
-    &.current {
-      color: var(--color-accent);
+    li {
+        width: 100%;
+        margin: 15px 0;
     }
 
-    &:hover {
-      color: var(--color-accent);
+    button {
+        width: 100%;
+        text-align: left;
+        line-height: 20px;
+        background-color: transparent;
+        border: none;
+        transition: 400ms;
+
+        &.current {
+            color: var(--color-accent);
+        }
+
+        &:hover {
+            color: var(--color-accent);
+        }
     }
-  }
 }
 
 .errorMessage {
-  color: var(--color-accent);
-  font-size: 14px;
-  margin-top: 8px;
+    color: var(--color-accent);
+    font-size: 14px;
+    margin-top: 8px;
 }

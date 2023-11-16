@@ -1,19 +1,19 @@
 .messageSuccess {
-  position: absolute;
-  top: 30px;
-  right: 30px;
-  padding: 10px 20px;
-  border-radius: 5px;
-  box-shadow: -1px 2px 14px -3px rgba(34, 60, 80, 0.2);
-  z-index: 10;
-  transition: 400ms;
-  transform: scale(0);
-  border-bottom: 1px solid green;
-  opacity: 0;
-  pointer-events: none;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: -1px 2px 14px -3px rgb(34 60 80 / 20%);
+    z-index: 10;
+    transition: 400ms;
+    transform: scale(0);
+    border-bottom: 1px solid green;
+    opacity: 0;
+    pointer-events: none;
 
-  &.show {
-    opacity: 1;
-    transform: scale(1);
-  }
+    &.show {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
