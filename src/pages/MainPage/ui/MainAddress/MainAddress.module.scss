@@ -11,3 +11,11 @@
     color: var(--color-link);
   }
 }
+
+.phones {
+  display: flex;
+
+  div:last-child span {
+    display: none;
+  }
+}

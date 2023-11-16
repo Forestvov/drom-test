@@ -15,8 +15,8 @@ export const Input = (props: InputProps) => {
         return (
             <Controller
                 render={({
-                    field: { onChange, value },
-                    fieldState: { error },
+                    field: { onChange, value, onBlur },
+                    fieldState: { error, isTouched, invalid },
                 }) => (
                     <div
                         className={cn(s.inner, {
@@ -28,18 +28,22 @@ export const Input = (props: InputProps) => {
                                 s.input,
                                 {
                                     [s.error]: Boolean(error),
+                                    [s.isTouched]: isTouched,
+                                    [s.isNotTouched]: !isTouched,
+                                    [s.invalid]: !invalid && isTouched,
                                 },
                                 [className],
                             )}
                             mask="+7 (999) 999-99-99"
                             value={value}
                             disabled={disabled}
-                            onChange={(e) => {
-                                onChange(e);
-                            }}
+                            onChange={onChange}
+                            onBlur={onBlur}
                             placeholder={placeholder}
                         />
-                        {error && <p className={s.error}>{error.message}</p>}
+                        {error && (
+                            <p className={s.errorText}>{error.message}</p>
+                        )}
                     </div>
                 )}
                 control={control}
@@ -50,7 +54,10 @@ export const Input = (props: InputProps) => {
 
     return (
         <Controller
-            render={({ field: { onChange, value }, fieldState: { error } }) => (
+            render={({
+                field: { onChange, value, onBlur },
+                fieldState: { error, isTouched, invalid },
+            }) => (
                 <div
                     className={cn(s.inner, {
                         [s.error]: Boolean(error),
@@ -61,17 +68,21 @@ export const Input = (props: InputProps) => {
                             s.input,
                             {
                                 [s.error]: Boolean(error),
+                                [s.isTouched]: isTouched,
+                                [s.isNotTouched]: !isTouched,
+                                [s.invalid]: !invalid && isTouched,
                             },
                             [className],
                         )}
                         {...register(name)}
                         onChange={onChange}
+                        onBlur={onBlur}
                         disabled={disabled}
                         placeholder={placeholder}
                         value={value}
                         type={type}
                     />
-                    {error && <p className={s.error}>{error.message}</p>}
+                    {error && <p className={s.errorText}>{error.message}</p>}
                 </div>
             )}
             control={control}

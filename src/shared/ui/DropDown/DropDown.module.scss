@@ -1,6 +1,13 @@
 .inner {
   position: relative;
   width: 100%;
+
+  input {
+    position: absolute;
+    display: none;
+    width: 100%;
+    height: 100px;
+  }
 }
 
 .header {
@@ -14,9 +21,38 @@
   padding: 0 20px;
   font-size: 16px;
   border-radius: 6px;
+  transition: 400ms;
 
   &.open .arrow {
     transform: rotate(180deg);
+  }
+
+  &.error {
+    background-color: #FAE5E8;
+    color: var(--color-accent);
+    outline-color: #d93145;
+  }
+
+  &.isNotTouched {
+    color: #413f3f;
+    opacity: .75;
+
+    &:focus {
+      opacity: 1;
+    }
+  }
+
+  &.isNotTouched {
+    color: #413f3f;
+    opacity: .75;
+
+    &:focus {
+      opacity: 1;
+    }
+  }
+
+  &.isTouched {
+    opacity: 1;
   }
 }
 
@@ -28,7 +64,7 @@
 
 .body {
   position: absolute;
-  top: calc(100% + 10px);
+  top: 70px;
   width: 100%;
   background-color: #fff;
   z-index: 1;
@@ -91,8 +127,18 @@
     border: none;
     transition: 400ms;
 
+    &.current {
+      color: var(--color-accent);
+    }
+
     &:hover {
       color: var(--color-accent);
     }
   }
+}
+
+.errorMessage {
+  color: var(--color-accent);
+  font-size: 14px;
+  margin-top: 8px;
 }

@@ -3,28 +3,63 @@ import { useRef, useState } from 'react';
 import { cn } from 'shared/lib/cn/cn';
 import { useOnOutsideClick } from 'shared/lib/hooks/useOnOutsideClick';
 
+import { DropDownOptionType, IDropDown } from './DropDown.interface';
+
 import s from './DropDown.module.scss';
 
-export const DropDown = () => {
-    const [value, setValue] = useState('Владивосток');
-    const [isOpen, setIsOpen] = useState(false);
+export const DropDown = (props: IDropDown) => {
+    const {
+        options,
+        placeholder,
+        onSelect = () => null,
+        errorMessage,
+        onBlur = () => null,
+        onChange,
+        value,
+        isTouched,
+    } = props;
 
     const ref = useRef(null);
 
-    useOnOutsideClick(ref, () => setIsOpen(false));
+    const [isOpen, setIsOpen] = useState(false);
 
-    const onSelect = (value: string) => {
-        setValue(value);
-        setIsOpen(false);
+    const onCloseHandler = () => {
+        if (isOpen) {
+            setIsOpen(false);
+        }
+    };
+
+    useOnOutsideClick(ref, onCloseHandler);
+
+    const onSelectHandler = (value: DropDownOptionType) => {
+        onSelect(value);
+        onChange(value.name);
+        onCloseHandler();
+        onBlur();
+    };
+
+    const toggleOpen = () => {
+        onBlur();
+        if (isOpen) {
+            setIsOpen(false);
+        } else {
+            setIsOpen(true);
+        }
     };
 
     return (
         <div className={s.inner} ref={ref}>
             <button
-                className={cn(s.header, { [s.open]: isOpen })}
-                onClick={() => setIsOpen((prevState) => !prevState)}
+                className={cn(s.header, {
+                    [s.open]: isOpen,
+                    [s.error]: errorMessage,
+                    [s.isTouched]: isTouched,
+                    [s.isNotTouched]: !isTouched,
+                })}
+                onClick={toggleOpen}
+                type="button"
             >
-                <span>{value}</span>
+                <span>{value ?? placeholder}</span>
                 <svg
                     className={s.arrow}
                     xmlns="http://www.w3.org/2000/svg"
@@ -37,23 +72,28 @@ export const DropDown = () => {
                     />
                 </svg>
             </button>
+
+            {errorMessage && <p className={s.errorMessage}>{errorMessage}</p>}
+
             <div className={cn(s.body, { [s.open]: isOpen })}>
                 <ul className={s.list}>
-                    <li>
-                        <button onClick={() => onSelect('Владивосток')}>
-                            Владивосток
-                        </button>
-                    </li>
-                    <li>
-                        <button onClick={() => onSelect('Приморск')}>
-                            Приморск
-                        </button>
-                    </li>
-                    <li>
-                        <button onClick={() => onSelect('Большой Камень')}>
-                            Большой Камень
-                        </button>
-                    </li>
+                    {options.length > 0 ? (
+                        options.map((option) => (
+                            <li key={option.id}>
+                                <button
+                                    className={
+                                        value === option.name ? s.current : ''
+                                    }
+                                    onClick={() => onSelectHandler(option)}
+                                    type="button"
+                                >
+                                    {option.name}
+                                </button>
+                            </li>
+                        ))
+                    ) : (
+                        <li>Список пуст</li>
+                    )}
                 </ul>
             </div>
         </div>

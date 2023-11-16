@@ -2,9 +2,44 @@
   width: 100%;
   padding: 0 20px;
   height: 60px;
-  border: none;
   border-radius: 6px;
   background-color: var(--color-bg-input);
   outline-color: #c0b9b9;
   transition: 400ms;
+  border: 1px solid transparent;
+
+  &.error {
+    background-color: #FAE5E8;
+    color: var(--color-accent);
+    outline-color: #d93145;
+
+    &::placeholder {
+      color: var(--color-accent);
+    }
+  }
+
+  &.isNotTouched {
+    color: #413f3f;
+    opacity: .75;
+
+    &:focus {
+      opacity: 1;
+    }
+  }
+
+  &.isTouched {
+    opacity: 1;
+  }
+
+  &.invalid:focus {
+    background-color: #fff;
+    border-color: #c0b9b9;
+    box-shadow: -1px 3px 8px 0px rgba(#C1C1C1, 0.2);
+  }
+}
+
+.errorText {
+  color: var(--color-accent);
+  font-size: 14px;
+  margin-top: 8px;
 }
