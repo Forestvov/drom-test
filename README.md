@@ -1,4 +1,4 @@
-# Nerey - Личный кабинет
+# Drom-Test - Личный кабинет
 
 ![React][React.js]
 
